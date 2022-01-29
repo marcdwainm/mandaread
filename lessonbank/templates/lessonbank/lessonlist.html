@@ -1,0 +1,65 @@
+{% extends 'mandaread/base.html' %}
+
+{% block content %}
+<div class="container mb-3">
+    <h1 class = "text-center">Lessons</h1>
+</div>
+
+<!-- <div class="container px-5 py-5 mb-5 rounded shadow bg-warning">
+    <h1 class = "mb-3 text-center">HSK 1</h1>
+    <ul class="list-group">
+        {% for lesson in lessons %}
+            {% if lesson.hsk == 1 %}
+                <a role = "button" class="list-group-item py-3 lesson-item" href = "{% url 'mandaread-lesson' lesson.id %}"><i class="fas fa-arrow-circle-right fa-lg"></i>{{ lesson.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="container px-5 py-5 mb-5 rounded shadow bg-warning">
+    <h1 class = "mb-3 text-center">HSK 2</h1>
+    <ul class="list-group">
+        {% for lesson in lessons %}
+            {% if lesson.hsk == 2 %}
+                <a role = "button" class="list-group-item py-3 lesson-item" href = "{% url 'mandaread-lesson' lesson.id %}"><i class="fas fa-arrow-circle-right fa-lg"></i>{{ lesson.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div> -->
+
+<div class = "container mb-5">
+    <h1 class="mb-4 text-center text-muted">HSK 1</h1>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+        {% for lesson in lessons %}
+            {% if lesson.hsk == 1 %}
+                <div class = "col d-flex justify-content-center align-items-center">
+                    <a class="col-4 card text-white border-warning w-100 shadow" role = "button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
+                        <b class = "card-header text-dark bg-warning">Lesson {{ forloop.counter }}</b>
+                        <div class="card-body">
+                            <span class = "text-dark">{{ lesson.title }}</span>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container mb-5">
+    <h1 class="mb-4 text-center text-muted">HSK 2</h1>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
+        {% for lesson in lessons %}
+            {% if lesson.hsk == 2 %}
+                <div class="col d-flex justify-content-center align-items-center">
+                    <a class="col-4 card text-white border-warning w-100 shadow" role="button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
+                        <b class="card-header text-dark bg-warning">Lesson {{ forloop.counter }}</b>
+                        <div class="card-body">
+                            <span class="text-dark">{{ lesson.title }}</span>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

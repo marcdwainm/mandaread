@@ -1,0 +1,67 @@
+{% extends 'mandaread/base.html' %}
+
+{% block content %}
+
+<div class="container d-flex flex-column-reverse flex-lg-row mb-5">
+    <div class="me-lg-5 col-lg-3">
+        <div class="content-section">
+            <h4>Shortcuts</h4>
+            <span>HSK 1</span>
+            <ul class="list-group mt-2 mb-4">
+                {% for lesson in lesson_list %}
+                    {% if lesson.hsk == 1 %}
+                        <a class="list-group-item list-group-item-light" href = "{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <span>HSK 2</span>
+            <ul class="list-group mt-2">
+                {% for lesson in lesson_list %}
+                    {% if lesson.hsk == 2 %}
+                        <a class="list-group-item list-group-item-light" href = "{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="d-flex flex-column mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>{{ object.title }}</h1>
+            <a href = "{% url 'mandaread-assessment' object.id %}" class="btn btn-warning">Assessment</a>
+        </div>
+        <p class="text-secondary">HSK {{ object.hsk }}</p>
+        <p class="mb-5">{{ object.description|linebreaksbr }}</p>
+        <!--TABLE-->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Chinese</th>
+                    <th scope="col">Pinyin</th>
+                    <th scope="col">English</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in lesson_items %}
+                    {% if item.title|stringformat:'s' == object.title|stringformat:'s' %}
+                        <tr>
+                            <td>{{ item.chinese }}</td>
+                            <td>{{ item.pinyin }}</td>
+                            <td>{{ item.english }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <!--TABLE END-->
+    </div>
+    <!--
+        STOPPED HERE
+        TODO
+        FIX IF SUBMITTED WITH EMPTY FIELDS,
+        FORM NOT SUBMITTING
+    -->
+</div>
+{% endblock %}
