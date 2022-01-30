@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-x!zw=2%bb3a30!96)^m$0_j9obje$i(#ma-ie=e=qu=egh-quy'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-x!zw=2%bb3a30!96)^m$0_j9obje$i(#ma-ie=e=qu=egh-quy'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'mandaread.apps.MandareadConfig',
     'lessonbank.apps.LessonbankConfig',
     'dictionary.apps.DictionaryConfig',
+    'assessments.apps.AssessmentsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

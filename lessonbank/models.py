@@ -1,15 +1,18 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class LessonBank(models.Model):
-    hsk = models.IntegerField()
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    hsk = models.IntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(2)])
+    lesson_number = models.IntegerField(default=0, null=False, blank=False, unique=True)
+    title = models.CharField(max_length=255, null=False, blank=False)
+    description = models.TextField(null=False, blank=False)
 
     def __str__(self):
         return self.title
 
 
 class LessonItem(models.Model):
+    new_word = models.BooleanField(default=False)
     title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
     chinese = models.CharField(max_length=50)
     pinyin = models.CharField(max_length=50)

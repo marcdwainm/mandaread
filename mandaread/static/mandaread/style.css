@@ -32,7 +32,6 @@
 }
 .tooltip-inner {
     background-color: #FFC107;
-    box-shadow: 0px 0px 4px black;
     color: black;
     opacity: 1 !important;
 }

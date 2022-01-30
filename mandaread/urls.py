@@ -8,5 +8,6 @@ urlpatterns = [
     path('editprofile/deleteaccount', views.deleteAccount, name='mandaread-delete-acc'),
     path('editprofile/accountdelete', views.accountDelete, name='mandaread-acc-deleted'),
     path('lessons/', include('lessonbank.urls')),
-    path('dictionary/', include('dictionary.urls'))
+    path('dictionary/', include('dictionary.urls')),
+    path('assessments/', include('assessments.urls'))
 ]

@@ -88,6 +88,7 @@ $(document).ready(function(){
             $("#total").html(numOfItems)
             $(".score-message").show()
             $(".submit-error").hide()
+            $(".instructions").hide()
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
             //Show wrong answers

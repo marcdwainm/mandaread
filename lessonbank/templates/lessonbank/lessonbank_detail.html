@@ -6,22 +6,27 @@
     <div class="me-lg-5 col-lg-3">
         <div class="content-section">
             <h4>Shortcuts</h4>
+            
             <span>HSK 1</span>
             <ul class="list-group mt-2 mb-4">
-                {% for lesson in lesson_list %}
-                    {% if lesson.hsk == 1 %}
+                {% if lesson_list_1 %}
+                    {% for lesson in lesson_list_1 %}
                         <a class="list-group-item list-group-item-light" href = "{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
-                    {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <span class="text-muted h6">Oops! no lessons here yet!</span>
+                {% endif %}
             </ul>
 
             <span>HSK 2</span>
-            <ul class="list-group mt-2">
-                {% for lesson in lesson_list %}
-                    {% if lesson.hsk == 2 %}
-                        <a class="list-group-item list-group-item-light" href = "{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
-                    {% endif %}
-                {% endfor %}
+            <ul class="list-group mt-2 mb-4">
+                {% if lesson_list_2 %}
+                    {% for lesson in lesson_list_2 %}
+                        <a class="list-group-item list-group-item-light" href="{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
+                    {% endfor %}
+                {% else %}
+                    <span class = "text-muted h6">Oops! no lessons here yet!</span>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -29,16 +34,32 @@
 
     <div class="d-flex flex-column mb-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>{{ object.title }}</h1>
+            <h1 class = "me-3">{{ object.title }}</h1>
             <a href = "{% url 'mandaread-assessment' object.id %}" class="btn btn-warning">Assessment</a>
         </div>
         <p class="text-secondary">HSK {{ object.hsk }}</p>
         <p class="mb-5">{{ object.description|linebreaksbr }}</p>
+        <div class = "d-flex justify-content-between flex-column-reverse flex-md-row">
+            <div class = "text-center">
+                <i class="fas fa-volume-up fa-lg me-2 mb-3"></i>
+                <span>Click on the Hanzi character to hear its pronounciation.</span>
+            </div>
+            <div class="d-flex justify-content-center mb-3 mb-lg-0">
+                <div class="d-flex justify-content-center align-items-center legend-div">
+                    <div class="legend-box"></div>
+                    <span>HSK-1</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center legend-div">
+                    <div class="legend-box bg-secondary bg-opacity-25"></div>
+                    <span>HSK-2</span>
+                </div>
+            </div>
+        </div>
         <!--TABLE-->
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Chinese</th>
+                    <th scope="col">Hanzi</th>
                     <th scope="col">Pinyin</th>
                     <th scope="col">English</th>
                 </tr>
@@ -46,11 +67,21 @@
             <tbody>
                 {% for item in lesson_items %}
                     {% if item.title|stringformat:'s' == object.title|stringformat:'s' %}
-                        <tr>
-                            <td>{{ item.chinese }}</td>
-                            <td>{{ item.pinyin }}</td>
-                            <td>{{ item.english }}</td>
-                        </tr>
+                        <!--IF NEW WORD-->
+                        {% if item.new_word %}
+                            <tr class = "bg-secondary bg-opacity-25">
+                                <td class="hanzi" role="button" data-toggle="tooltip" data-placement="left" title="Click me!">{{ item.chinese }}
+                                </td>
+                                <td>{{ item.pinyin }}</td>
+                                <td>{{ item.english }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td class = "hanzi" role = "button" data-toggle="tooltip" data-placement="left" title="Click me!">{{ item.chinese }}</td>
+                                <td>{{ item.pinyin }}</td>
+                                <td >{{ item.english }}</td>
+                            </tr>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </tbody>

@@ -8,14 +8,20 @@ import logging
 class LessonsListView(ListView):
     model = LessonBank
     template_name = 'lessonbank/lessonlist.html'
-    context_object_name = 'lessons'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['lesson_list_1'] = LessonBank.objects.filter(hsk=1)
+        context['lesson_list_2'] = LessonBank.objects.filter(hsk=2)
+        return context
 
 class LessonListDetailView(DetailView):
     model = LessonBank
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['lesson_list'] = LessonBank.objects.all()
+        context['lesson_list_1'] = LessonBank.objects.filter(hsk=1)
+        context['lesson_list_2'] = LessonBank.objects.filter(hsk=2)
         context['lesson_items'] = LessonItem.objects.all()
         return context
 

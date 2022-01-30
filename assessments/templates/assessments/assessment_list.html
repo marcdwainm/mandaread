@@ -2,19 +2,19 @@
 
 {% block content %}
 <div class="container mb-3">
-    <h1 class = "text-center">Lessons</h1>
+    <h1 class="text-center">Assessments</h1>
 </div>
 
-<div class = "container mb-5">
+<div class="container mb-5">
     <h1 class="mb-4 text-center text-muted">HSK 1</h1>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
         {% if lesson_list_1 %}
             {% for lesson in lesson_list_1 %}
-                <div class = "col d-flex justify-content-center align-items-center">
-                    <a class="col-4 card text-white border-warning w-100 shadow" role = "button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
-                        <b class = "card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <a class="col-4 card text-white border-warning w-100 shadow" role="button" href="{% url 'mandaread-assessment' lesson.id %}" style="max-width: 18rem; height: 120px;">
+                        <b class="card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
                         <div class="card-body">
-                            <span class = "text-dark">{{ lesson.title }}</span>
+                            <span class="text-dark">{{ lesson.title }}</span>
                         </div>
                     </a>
                 </div>
@@ -33,7 +33,8 @@
         {% if lesson_list_2 %}
             {% for lesson in lesson_list_2 %}
                 <div class="col d-flex justify-content-center align-items-center">
-                    <a class="col-4 card text-white border-warning w-100 shadow" role="button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
+                    <a class="col-4 card text-white border-warning w-100 shadow" role="button"
+                        href="{% url 'mandaread-assessment' lesson.id %}" style="max-width: 18rem; height: 120px;">
                         <b class="card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
                         <div class="card-body">
                             <span class="text-dark">{{ lesson.title }}</span>
@@ -42,8 +43,8 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class = "container">
-                <h4 class = "text-secondary text-center">Oops! no lessons here yet!</h4>
+            <div class="container">
+                <h4 class="text-secondary text-center">Oops! no lessons here yet!</h4>
             </div>
         {% endif %}
     </div>
