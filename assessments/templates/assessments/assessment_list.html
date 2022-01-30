@@ -12,7 +12,7 @@
             {% for lesson in lesson_list_1 %}
                 <div class="col d-flex justify-content-center align-items-center">
                     <a class="col-4 card text-white border-warning w-100 shadow" role="button" href="{% url 'mandaread-assessment' lesson.id %}" style="max-width: 18rem; height: 120px;">
-                        <b class="card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
+                        <b class="card-header text-dark bg-warning">Assessment {{ lesson.lesson_number }}</b>
                         <div class="card-body">
                             <span class="text-dark">{{ lesson.title }}</span>
                         </div>
@@ -35,7 +35,7 @@
                 <div class="col d-flex justify-content-center align-items-center">
                     <a class="col-4 card text-white border-warning w-100 shadow" role="button"
                         href="{% url 'mandaread-assessment' lesson.id %}" style="max-width: 18rem; height: 120px;">
-                        <b class="card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
+                        <b class="card-header text-dark bg-warning">Assessment {{ lesson.lesson_number }}</b>
                         <div class="card-body">
                             <span class="text-dark">{{ lesson.title }}</span>
                         </div>

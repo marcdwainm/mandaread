@@ -1,19 +1,15 @@
 from django.contrib import messages
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import TemplateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from lessonbank.models import LessonBank
 from django.urls import reverse_lazy
 from landing.forms import UserUpdateForm, ProfileUpdateForm
-
-
-@login_required
-def home(request):
-    return render(request, 'mandaread/home.html')
 
 
 @login_required
@@ -65,6 +61,22 @@ def accountDelete(request):
 
 
 ######## CLASS BASED VIEWS ########
+
+class Home(LoginRequiredMixin, TemplateView):
+    template_name = 'mandaread/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = get_object_or_404(User, username=self.request.user)
+
+        #Gettiing total read lessons of user
+        lessons_read = LessonBank.objects.filter(read_by=user).count()
+        all_lessons = LessonBank.objects.all().count()
+
+        #Getting user's percentage
+        percentage = str(round((lessons_read / all_lessons) * 100))
+        context['lesson_percentage'] = percentage
+        return context
 
 class NewPasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangeForm

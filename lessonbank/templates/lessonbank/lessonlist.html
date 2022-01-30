@@ -13,8 +13,13 @@
                 <div class = "col d-flex justify-content-center align-items-center">
                     <a class="col-4 card text-white border-warning w-100 shadow" role = "button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
                         <b class = "card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
-                        <div class="card-body">
-                            <span class = "text-dark">{{ lesson.title }}</span>
+                        <div class="card-body d-flex">
+                            <span class = "text-dark me-2 flex-grow-1">{{ lesson.title }}</span>
+                            {% if user in lesson.read_by.all %}
+                            <div class = "text-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            {% endif %}
                         </div>
                     </a>
                 </div>
@@ -33,10 +38,16 @@
         {% if lesson_list_2 %}
             {% for lesson in lesson_list_2 %}
                 <div class="col d-flex justify-content-center align-items-center">
-                    <a class="col-4 card text-white border-warning w-100 shadow" role="button" href = "{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
+                    <a class="col-4 card text-white border-warning w-100 shadow" role="button"
+                        href="{% url 'mandaread-lesson' lesson.id %}" style="max-width: 18rem; height: 120px;">
                         <b class="card-header text-dark bg-warning">Lesson {{ lesson.lesson_number }}</b>
-                        <div class="card-body">
-                            <span class="text-dark">{{ lesson.title }}</span>
+                        <div class="card-body d-flex">
+                            <span class="text-dark me-2 flex-grow-1">{{ lesson.title }}</span>
+                            {% if user in lesson.read_by.all %}
+                            <div class="text-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            {% endif %}
                         </div>
                     </a>
                 </div>

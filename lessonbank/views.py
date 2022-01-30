@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from .models import LessonBank, LessonItem, LessonAssessment
-from django.db.models import Q
+from django.contrib.auth.models import User
 import logging
 
 
@@ -17,9 +17,16 @@ class LessonsListView(ListView):
 
 class LessonListDetailView(DetailView):
     model = LessonBank
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = get_object_or_404(User, username=self.request.user)
+        pk = self.kwargs['pk']
+
+        # Add User to "read_by" field of the lesson
+        lesson_obj = LessonBank.objects.get(lesson_number=pk)
+        lesson_obj.read_by.add(user)
+
         context['lesson_list_1'] = LessonBank.objects.filter(hsk=1)
         context['lesson_list_2'] = LessonBank.objects.filter(hsk=2)
         context['lesson_items'] = LessonItem.objects.all()

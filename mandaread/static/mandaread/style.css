@@ -51,3 +51,34 @@
 .legend-div{
   margin: 0 10px;
 }
+
+.progress {
+  position: relative;
+  height: 25px;
+}
+.progress-bar {
+  overflow: hidden;
+  z-index: 2;
+}
+
+.progress-first-label{
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.progress-label {
+  padding: 0 10px;
+  font-weight: bold;
+  color: #0275D8;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.progress-label-danger{
+  color: red;
+}

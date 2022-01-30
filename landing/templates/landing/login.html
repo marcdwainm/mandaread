@@ -21,7 +21,10 @@
                     {% endfor %}
                 {% endif %}
                 {{ form|crispy }}
-                <button class="w-100 btn btn-lg btn-warning mt-3" type="submit">Log In</button>
+                <button class="w-100 btn btn-lg btn-warning my-3" type="submit">Log In</button>
+                <div class = "text-center">
+                    <a href="{% url 'landing-register' %}" class = "text-secondary">New to Mandaread? Sign up</a>
+                </div>
             </form>
         </div>
     </div>
