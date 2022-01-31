@@ -28,9 +28,9 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar mb-5 bg-white navbar-expand-lg navbar-light border-bottom shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand text-warning" style="font-family: 'Varela Round', sans-serif;" href="#">mandaread</a>
+    <nav class="navbar fixed-top mb-5 bg-warning navbar-expand-lg navbar-light shadow">
+        <div class="container-fluid mx-3 mx-md-5">
+            <a class="navbar-brand" style="font-family: 'Quicksand', sans-serif; font-weight: 700; color: #9c7500;" href="{% url 'mandaread-home' %}">mandaread</a>
             <button class="navbar-toggler outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,19 +38,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="{% url 'mandaread-home' %}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'mandaread-home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="{% url 'mandaread-lessons' %}">Lessons</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'mandaread-lessons' %}">Lessons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="{% url 'mandaread-assessments' %}">Assessments</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'mandaread-assessments' %}">Assessments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="{% url 'mandaread-dict' %}">Dictionary</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'mandaread-dict' %}">Dictionary</a>
                     </li>
                 </ul>
-                <a class="btn btn-warning" href="{% url 'landing-logout' %}">Logout</a>
+                <a class="btn btn-light btn-sm" href="{% url 'landing-logout' %}">Logout</a>
             </div>
         </div>
     </nav>

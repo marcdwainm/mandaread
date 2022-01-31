@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--STATIC CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/style.css' %}">
 
     <title>Document</title>
 </head>
@@ -21,15 +25,15 @@
 <body>
 
     <!--HEADER-->
-    <nav class="navbar bg-white navbar-expand-lg navbar-light border-bottom shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand text-warning" style="font-family: 'Varela Round', sans-serif;" href="#">mandaread</a>
+    <nav class="navbar fixed-top bg-warning navbar-light shadow">
+        <div class="container-fluid mx-3 mx-lg-5">
+            <a class="navbar-brand" style="font-family: 'Quicksand', sans-serif; font-weight: 700; color: #9c7500;">mandaread</a>
             <div>
-                <a class="btn btn-warning me-1" href="{% url 'landing-login' %}">Log In</a>
-                <a class="btn btn-outline-secondary" href="{% url 'landing-register' %}">Register</a>
+                <a class="btn btn-light btn-sm shadow-sm" href="{% url 'landing-login' %}">Login</a>
+                <a class="btn btn-outline-secondary btn-sm shadow-sm" href="{% url 'landing-register' %}">Register</a>
             </div>
         </div>
-    </nav> 
+    </nav>
 
     {% block content %}{% endblock %}
 

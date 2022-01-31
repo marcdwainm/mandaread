@@ -1,15 +1,15 @@
 {% extends "landing/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
 <!--LOGIN CONTAINER-->
-<div class="w-100 px-3 py-5 mb-3 rounded bg-warning shadow">
-    <div class="row align-items-center g-lg-5 py-5 px-5">
-        <div class="col-lg-7 text-center text-lg-start">
+<div class="w-100 vh-100 p-5 mb-3 rounded bg-warning shadow d-flex flex-column flex-md-row justify-content-center align-items-center">
+        <div class="col-lg-7 px-md-5 text-center text-lg-start me-md-3 mt-5 mt-md-0">
             <h1 class="display-4 fw-bold lh-1 mb-3">Your fluency is in our hands.</h1>
             <p class="col-lg-10 fs-4">Mandaread is a roadmap to guide you through your Chinese lingo journey.
                 Sign up and start speaking like a local!</p>
         </div>
-        <div class="col-md-10 mx-auto col-lg-5">
+        <div class="col-12 col-md-5">
             <form method = "POST" class="p-4 p-md-5 border rounded-3 bg-light shadow-lg">
                 <h2 class = "text-center mb-4">Log In</h2>
                 {% csrf_token %}
@@ -21,12 +21,11 @@
                     {% endfor %}
                 {% endif %}
                 {{ form|crispy }}
-                <button class="w-100 btn btn-lg btn-warning my-3" type="submit">Log In</button>
+                <button class="w-100 btn btn-warning my-3" type="submit">Log In</button>
                 <div class = "text-center">
                     <a href="{% url 'landing-register' %}" class = "text-secondary">New to Mandaread? Sign up</a>
                 </div>
             </form>
         </div>
-    </div>
 </div>
 {% endblock %}

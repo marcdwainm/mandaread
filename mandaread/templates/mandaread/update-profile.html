@@ -9,8 +9,8 @@
                 </div>
             {% endfor %}
         {% endif %}
-        <div class="d-flex justify-content-center flex-column bg-warning shadow p-5 mb-5 rounded">
-            <div class = "d-flex flex-column justify-content-center align-items-center mb-3">
+        <div class="d-flex justify-content-center flex-column p-5 mb-5 rounded">
+            <div class = "d-flex flex-column justify-content-center align-items-center bg-warning p-4">
                 <div>
                     <img class = "rounded-circle account-img border border-secondary shadow" src="{{ user.profile.image.url }}">
                 </div>
@@ -20,15 +20,15 @@
                 </div>
             </div>
 
-            <form method = "POST" class = "bg-light p-5 shadow rounded" enctype = "multipart/form-data">
+            <form method = "POST" class = "p-5 shadow rounded" enctype = "multipart/form-data">
                 {% csrf_token %}
                 <fieldset class = "mb-3">
-                    <legend>Update Username</legend>
+                    <legend class = "fw-bold">Update Username</legend>
                     {{ u_form|crispy }}
                 </fieldset>
                 <hr/>
                 <fieldset class = "mb-3">
-                    <legend>Change Profile Picture</legend>
+                    <legend class = "fw-bold">Change Profile Picture</legend>
                     {{ p_form|crispy }}
                 </fieldset>
                 <div class = "d-flex flex-column flex-md-row justify-content-md-between">
