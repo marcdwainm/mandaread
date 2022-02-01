@@ -1,18 +1,19 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.urls import reverse
 from landing.models import Profile
 
 class LessonBank(models.Model):
     hsk = models.IntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(2)])
-    lesson_number = models.IntegerField(default=0, null=False, blank=False, unique=True)
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     read_by = models.ManyToManyField(User, null=True, blank=True)
 
     def __str__(self):
         return self.title
-
+        
 
 class LessonItem(models.Model):
     new_word = models.BooleanField(default=False)

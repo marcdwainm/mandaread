@@ -1,0 +1,5 @@
+.form-group > div {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }

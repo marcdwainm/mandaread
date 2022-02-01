@@ -103,3 +103,8 @@ h1{
   display: flex;
   align-items: center;
 }
+
+.card, .btn-admin{
+  z-index: 2;
+  position: relative;
+}

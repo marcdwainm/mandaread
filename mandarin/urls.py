@@ -22,7 +22,11 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing.urls')),
-    path('home/', include('mandaread.urls'))
+    path('home/', include('mandaread.urls')),
+    path('lessons/', include('lessonbank.urls')),
+    path('dictionary/', include('dictionary.urls')),
+    path('assessments/', include('assessments.urls')),
+    path('adminmode/', include('adminmode.urls'))
 ]
 
 if settings.DEBUG:

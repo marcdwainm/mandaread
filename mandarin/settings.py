@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'lessonbank.apps.LessonbankConfig',
     'dictionary.apps.DictionaryConfig',
     'assessments.apps.AssessmentsConfig',
+    'adminmode.apps.AdminmodeConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

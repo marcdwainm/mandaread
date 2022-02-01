@@ -24,7 +24,7 @@ class LessonListDetailView(DetailView):
         pk = self.kwargs['pk']
 
         # Add User to "read_by" field of the lesson
-        lesson_obj = LessonBank.objects.get(lesson_number=pk)
+        lesson_obj = LessonBank.objects.get(pk=pk)
         lesson_obj.read_by.add(user)
 
         context['lesson_list_1'] = LessonBank.objects.filter(hsk=1)
