@@ -46,4 +46,6 @@ class LessonAssessmentView(ListView):
     # Get questions
     def get_queryset(self):
         pk = self.kwargs['pk']
-        return LessonBank.objects.get(id=pk).lessonassessment_set.all().order_by('?')[:10]
+        current_lesson = LessonBank.objects.get(id=pk)
+        return LessonAssessment.objects.filter(appearances_in_tests=current_lesson).order_by('?')[:10]
+        # return .lessonassessment_set.all().order_by('?')[:10]

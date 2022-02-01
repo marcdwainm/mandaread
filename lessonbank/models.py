@@ -6,7 +6,7 @@ from django.urls import reverse
 from landing.models import Profile
 
 class LessonBank(models.Model):
-    hsk = models.IntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(2)])
+    hsk = models.PositiveIntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(2)])
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     read_by = models.ManyToManyField(User, null=True, blank=True)
@@ -34,11 +34,12 @@ class LessonAssessment(models.Model):
         ('True or False', 'True or False')
     )
 
-    title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
+    # title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
     question_type = models.CharField(max_length=100, default='Multiple Choice', choices=QUESTION_TYPE)
     question = models.TextField()
     choices = models.TextField(null=True, blank=True)
     answer = models.CharField(max_length=255)
+    appearances_in_tests = models.ManyToManyField(LessonBank, null=True)
 
     def __str__(self):
-        return f"{self.title} - {self.question}"
+        return self.question
