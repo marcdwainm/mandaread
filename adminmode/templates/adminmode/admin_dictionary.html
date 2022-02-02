@@ -45,14 +45,14 @@
             </thead>
             <tbody>
                 {% for word in words %}
-                    {% if word.hsk == "HSK-2" %}
+                    {% if word.from_lesson.hsk == 2 %}
                         <tr class = "bg-secondary bg-opacity-25">
                     {% else %}
                         <tr>
                     {% endif %}
                         <td class = "d-flex gap-1 flex-column flex-lg-row">
                             <a href = "{% url 'admin-delete-dict' word.id %}" class = "btn btn-sm btn-danger">Delete</a>
-                            <a href = "{% url 'admin-update-dict' word.id %}" class = "btn btn-sm btn-warning">Edit</a>
+                            <a href = "{% url 'admin-update-dict' word.id %}?next={{current_page}}" class = "btn btn-sm btn-warning">Edit</a>
                         </td>
                         <td role = "button" data-toggle="tooltip" data-placement="top" title="Click me!" class = "hanzi">{{ word.hanzi }}</td>
                         <td>{{ word.pinyin }}</td>

@@ -10,20 +10,21 @@ class LessonBank(models.Model):
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     read_by = models.ManyToManyField(User, null=True, blank=True)
+    enable_table = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
         
 
-class LessonItem(models.Model):
-    new_word = models.BooleanField(default=False)
-    title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
-    chinese = models.CharField(max_length=50)
-    pinyin = models.CharField(max_length=50)
-    english = models.CharField(max_length=255)
+# class LessonItem(models.Model):
+#     new_word = models.BooleanField(default=False)
+#     title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
+#     chinese = models.CharField(max_length=50)
+#     pinyin = models.CharField(max_length=50)
+#     english = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.chinese + " - " + self.pinyin + " - " + self.english
+#     def __str__(self):
+#         return self.chinese + " - " + self.pinyin + " - " + self.english
 
 
 class LessonAssessment(models.Model):

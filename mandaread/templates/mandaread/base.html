@@ -50,18 +50,25 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'mandaread-dict' %}">Dictionary</a>
                     </li>
                 </ul>
-                <div>
-                    {% if request.user.is_superuser %}
-                        <a class="btn btn-secondary btn-sm" href="{% url 'admin-home' %}">Enter Admin Mode</a>
-                    {% endif %}
-                    <a class="btn btn-light btn-sm" href="{% url 'landing-logout' %}">Logout</a>
+                <div class = 'd-flex gap-2'>
+                    <div class = "position-relative mb-2 mb-lg-0">
+                        {% if request.user.is_superuser %}
+                            <a class="btn btn-secondary btn-sm" href="{% url 'admin-home' %}">Enter Admin Mode</a>
+                        {% endif %}
+                        <button type = "button" id = "logout-btn" class="btn btn-light btn-sm">Logout</button>
+                        <div class="d-none flex-column position-absolute bg-white shadow logout-dropdown" id="logout-dropdown">
+                            <span class = "text-muted px-3 py-2 fw-bold border-bottom">Are you sure?</span>
+                            <a class="btn btn-sm text-start px-3 py-2" href="{% url 'landing-logout' %}">I'm sure</a>
+                            <button type = "button" class="btn btn-sm text-start px-3 py-2" id = "cancel-logout">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class = "container h-25 bg-primary">
-
+        
     </div>
 
     {% block content %}
@@ -83,8 +90,11 @@
     
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <!--STATIC SCRIPTS-->
     <script src="{% static 'mandaread/quiz-script.js' %}"></script>
     <script src="{% static 'mandaread/text-to-speech.js' %}"></script>
+    <script src="{% static 'mandaread/base.js' %}"></script>
 </body>
 
 </html>

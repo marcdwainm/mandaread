@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
-from .models import LessonBank, LessonItem, LessonAssessment
+from .models import LessonBank, LessonAssessment
+from dictionary.models import Dictionary
 from django.contrib.auth.models import User
 import logging
 
@@ -29,7 +30,9 @@ class LessonListDetailView(DetailView):
 
         context['lesson_list_1'] = LessonBank.objects.filter(hsk=1)
         context['lesson_list_2'] = LessonBank.objects.filter(hsk=2)
-        context['lesson_items'] = LessonItem.objects.all()
+
+
+        context['lesson_items'] = Dictionary.objects.filter(from_lesson=lesson_obj)
         return context
 
 class LessonAssessmentView(ListView):

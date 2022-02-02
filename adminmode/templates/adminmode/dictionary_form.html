@@ -10,7 +10,7 @@
                 <h1 class = "mb-4">Update word: "{{ object.hanzi }} -- {{ object.definition }}"</h1>
             {% endif %}
         {% endwith %}
-        <form method = "POST" action = "{% url 'admin-dict' %}?page=13">
+        <form method = "POST">
             {% csrf_token %}
             {{ form|crispy }}
             <div class = "mt-3">

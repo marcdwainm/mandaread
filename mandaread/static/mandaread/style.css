@@ -10,6 +10,16 @@ h1{
   font-weight: 600;
 }
 
+.logout-dropdown{
+  width: 130px;
+  bottom: -133px;
+  right: 0;
+}
+
+.logout-dropdown span{
+  font-size: 0.9em;
+}
+
 .navbar-brand{
   font-size: 1.5em !important;
 }

@@ -32,7 +32,7 @@
             </thead>
             <tbody>
                 {% for word in words %}
-                    {% if word.hsk == "HSK-2" %}
+                    {% if word.from_lesson.hsk == 2 %}
                         <tr class = "bg-secondary bg-opacity-25">
                     {% else %}
                         <tr>
