@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.LessonsListView.as_view(), name='mandaread-lessons'),
     path('<int:pk>/', views.LessonListDetailView.as_view(), name='mandaread-lesson'),
     path('<int:pk>/assessment/', views.LessonAssessmentView.as_view(), name='mandaread-assessment'),
+    path('mocktest/<int:hsk>', views.MockTestView.as_view(), name = "mandaread-mocktest")
 ]

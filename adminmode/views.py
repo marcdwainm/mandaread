@@ -1,6 +1,10 @@
+from distutils.log import Log
 from multiprocessing import get_context
+from re import template
 from typing import Dict
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.admin.models import LogEntry
 from django.views.generic import (
     TemplateView, 
     ListView, 
@@ -17,11 +21,73 @@ from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 
 
+
+######HOME#######
+
 class AdminHome(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = "adminmode/admin_home.html"
 
     def test_func(self):
         return self.request.user.is_superuser
+
+
+class AdminManageUsers(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = User
+    template_name = "adminmode/admin_users.html"
+    context_object_name = "users"
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+class AdminEditUser(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = User
+    template_name = "adminmode/admin_edit_users.html"
+    context_object_name = 'user'
+    fields = ['is_staff', 'is_superuser', 'last_login']
+
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        user = User.objects.get(pk=pk)
+        messages.add_message(self.request, messages.SUCCESS, f"{user.username}'s account has been updated!")
+        return reverse_lazy('admin-users')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+class AdminDeleteUser(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = User
+    template_name = "adminmode/admin_delete_user.html"
+    context_object_name = "user"
+
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        user = User.objects.get(pk=pk)
+        messages.add_message(self.request, messages.SUCCESS, f"{user.username}'s account has been terminated")
+        return reverse_lazy('admin-users')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+######REPORT GENERATION#######
+
+class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = User
+    template_name = "adminmode/admin_reports.html"
+    context_object_name = "users"
+    queryset = User.objects.all()[:10]
+
+    #Get Activity Logs
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['log_entries'] = LogEntry.objects.all()[:20]
+        return context
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
 
 ######LESSONS#######
 

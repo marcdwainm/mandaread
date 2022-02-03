@@ -46,7 +46,7 @@
             <div class = "mb-3 align-self-start align-self-md-end">
                 <a href="{% url 'admin-delete-lesson' object.pk %}" class="btn btn-danger">Delete</a>
                 <a href="{% url 'admin-update-lesson' object.pk %}" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-warning">Manage Assessments</a>
+                <a href="{% url 'admin-assessment' object.pk %}" class="btn btn-warning">Manage Assessments</a>
             </div>
             <h1 class="me-3">{{ object.title }}</h1>
         </div>

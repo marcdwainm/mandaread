@@ -7,7 +7,11 @@
             <div class="me-4 d-flex flex-column align-items-center justify-content-center col-12">
                 <img class="rounded-circle account-img border border-secondary mb-3 shadow" src="{{ user.profile.image.url }}">
                 <h1>{{ user.username }}</h1>
-                <h5>(Admin Mode)</h5>
+                <h5 class = "mb-4">(Admin Mode)</h5>
+                <div>
+                    <a href = "{% url 'admin-users' %}" class = "btn btn-secondary btn-sm">Manage Users</a>
+                    <a href = "{% url 'admin-reports' %}" class = "btn btn-secondary btn-sm">Reports</a>
+                </div>
             </div>
         </div>
     </div>

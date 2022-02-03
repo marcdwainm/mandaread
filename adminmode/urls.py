@@ -2,8 +2,16 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    # Lessons
+    #Home
     path('', views.AdminHome.as_view(), name='admin-home'),
+    path('users/', views.AdminManageUsers.as_view(), name='admin-users'),
+    path('users/edit/<int:pk>/', views.AdminEditUser.as_view(), name='admin-edit-user'),
+    path('users/delete/<int:pk>/', views.AdminDeleteUser.as_view(), name='admin-delete-user'),
+
+    #Reports
+    path('reports/', views.AdminReports.as_view(), name='admin-reports'),
+
+    # Lessons
     path('lessons/', views.AdminLessons.as_view(), name='admin-lessons'),
     path('lessons/<int:pk>/', views.AdminLesson.as_view(), name='admin-lesson'),
     path('lessons/new/', views.AdminCreateLesson.as_view(), name='admin-create-lesson'),

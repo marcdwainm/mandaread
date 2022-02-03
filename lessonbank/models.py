@@ -9,11 +9,11 @@ class LessonBank(models.Model):
     hsk = models.PositiveIntegerField(default=1, null=False, blank=False, validators=[MinValueValidator(1), MaxValueValidator(2)])
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
-    read_by = models.ManyToManyField(User, null=True, blank=True)
+    read_by = models.ManyToManyField(User, blank=True)
     enable_table = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.title
+        return "HSK" + str(self.hsk) + " " + self.title
         
 
 # class LessonItem(models.Model):
@@ -37,10 +37,11 @@ class LessonAssessment(models.Model):
 
     # title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
     question_type = models.CharField(max_length=100, default='Multiple Choice', choices=QUESTION_TYPE)
+    reading_type = models.BooleanField(default=False)
     question = models.TextField()
     choices = models.TextField(null=True, blank=True)
     answer = models.CharField(max_length=255)
-    appearances_in_tests = models.ManyToManyField(LessonBank, null=True)
+    appearances_in_tests = models.ManyToManyField(LessonBank)
 
     def __str__(self):
         return self.question

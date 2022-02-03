@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <main class="container">
-        {% if messages %}
-            {% for message in messages %}
-                <div class = "alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
         <div class="d-flex justify-content-center flex-column p-5 mb-5 rounded">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class = "alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class = "d-flex flex-column justify-content-center align-items-center bg-warning p-4">
                 <div>
                     <img class = "rounded-circle account-img border border-secondary shadow" src="{{ user.profile.image.url }}">
