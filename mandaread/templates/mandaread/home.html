@@ -2,15 +2,15 @@
 {% load static %}
 {% block content %}
 <!--PROFILE-->
-<main class="container mb-5">
-    <div class="d-flex justify-content-between flex-column p-4 rounded">
+<main class="container col-12 col-lg-8 mb-5">
+    <div class="d-flex justify-content-between flex-column p-4 mt-3 rounded">
         <div class="d-flex flex-column flex-md-row mb-3">
             <div class="me-md-4 mb-4 d-flex flex-column align-items-center justify-content-md-center">
                 <img class="rounded-circle account-img border border-secondary mb-3 shadow" src="{{ user.profile.image.url }}">
                 <a href="{% url 'mandaread-edit-profile' %}" class = "btn bg-secondary bg-opacity-25 btn-sm">Edit Profile</a>
             </div>
             <div class = "w-100 text-center text-md-start">
-                <h1>Welcome, {{ user.username }}</h1>
+                <h2>Welcome, {{ user.username }}</h2>
                 <span>Statistics: </span>
                 <div class = "mt-3">
                     <div class="progress mb-3 border">
@@ -25,48 +25,42 @@
                         <div class = "d-flex mt-3 mt-md-0 flex-wrap justify-content-center">
 
                             {% if lesson_percentage|add:0 >= 25 %}
-                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Wheat of Prosperity</b> <br /> <span>Achieved when read 25% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/wheat.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Wheat of Prosperity</b> <br /> <span>Achieved when read 25% of the lessons</span>">
                             {% else %}
-                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Wheat of Prosperity</b> <br /> <span>Achieved when read 25% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/wheat.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Wheat of Prosperity</b> <br /> <span>Achieved when read 25% of the lessons</span>">
                             {% endif %}
+                                <img class = "achievement" src="{% static 'mandaread/assets/wheat.png' %}" alt="">
+                            </div>
 
                             {% if lesson_percentage|add:0 >= 50 %}
-                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Terracota Helmet</b> <br /> <span>Achieved when read 50% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/helmet.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Terracota Helmet</b> <br /> <span>Achieved when read 50% of the lessons</span>">
                             {% else %}
-                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Terracota Helmet</b> <br /> <span>Achieved when read 50% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/helmet.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Terracota Helmet</b> <br /> <span>Achieved when read 50% of the lessons</span>">
                             {% endif %}
+                                <img class = "achievement" src="{% static 'mandaread/assets/helmet.png' %}" alt="">
+                            </div>
                             
-
                             {% if lesson_percentage|add:0 >= 100 %}
-                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Golden Konghou</b> <br /> <span>Achieved when read 100% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/harp.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Golden Konghou</b> <br /> <span>Achieved when read 100% of the lessons</span>">
                             {% else %}
-                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                    title="<b>Golden Konghou</b> <br /> <span>Achieved when read 100% of the lessons</span>">
-                                    <img class = "achievement" src="{% static 'mandaread/assets/harp.png' %}" alt="">
-                                </div>
+                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Golden Konghou</b> <br /> <span>Achieved when read 100% of the lessons</span>">
                             {% endif %}
-
-                            <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                title="<b>Lù Antlers</b> <br /> <span>Achieved when perfected an assessment</span>">
+                                <img class = "achievement" src="{% static 'mandaread/assets/harp.png' %}" alt="">
+                            </div>
+                            
+                            {% if user.profile.assessment_perfected %}
+                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Lù Antlers</b> <br /> <span>Achieved when perfected an assessment</span>">
+                            {% else %}
+                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Lù Antlers</b> <br /> <span>Achieved when perfected an assessment</span>">
+                            {% endif %}
                                 <img class = "achievement" src="{% static 'mandaread/assets/celtic.png' %}" alt="">
                             </div>
-                            <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" 
-                                title="<b>Lost Coin of Shihuangdi</b> <br /> <span>Achieved when perfected a mock examination</span>">
+                            
+                            {% if user.profile.mock_perfected %}
+                                <div class = "p-2 mx-1 mx-lg-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Lost Coin of Shihuangdi</b> <br /> <span>Achieved when perfected a mock examination</span>">
+                            {% else %}
+                                <div class = "p-2 mx-1 mx-lg-3 grayscale" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Lost Coin of Shihuangdi</b> <br /> <span>Achieved when perfected a mock examination</span>">
+                            {% endif %}
                                 <img class = "achievement" src="{% static 'mandaread/assets/coin.png' %}" alt="">
                             </div>
                         </div>
@@ -78,10 +72,10 @@
 </main>
 
 <div class="container mb-3">
-    <h1 class="text-center"></h1>
+    <h2 class="text-center"></h2>
 </div>
 
-<div class="container mb-5">
+<div class="container col-12 col-lg-9 mb-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="card shadow">
@@ -132,9 +126,9 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Mock Test</h5>
                     <p class="card-text">Take the mock test and overcome your mistakes! See where you're strengths and weaknesses are.</p>
-                    <div class="col w-100 text-end">
-                        <a href="{% url 'mandaread-mocktest' 1 %}" class="btn btn-warning col-12 col-xl-2">HSK-1</a>
-                        <a href="{% url 'mandaread-mocktest' 2 %}" class="btn btn-warning col-12 col-xl-2">HSK-2</a>
+                    <div class="col d-flex flex-column flex-xl-row gap-2 justify-content-md-end">
+                        <a href="{% url 'mandaread-mocktest' 1 %}" class="btn btn-warning">HSK-1</a>
+                        <a href="{% url 'mandaread-mocktest' 2 %}" class="btn btn-warning">HSK-2</a>
                     </div>
                 </div>
             </div>

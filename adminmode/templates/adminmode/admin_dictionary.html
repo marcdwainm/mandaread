@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+
+<div class="mt-4">
     <div class="container col-lg-8 col-xl-10 mb-3">
         {% if messages %}
             {% for message in messages %}
@@ -13,9 +15,9 @@
         {% endif %}
     </div>
     <audio src="" id = "speech" hidden></audio>
-    <div class="container col-lg-8 col-xl-10 mb-3">
+    <div class="container col-12 col-lg-9 mb-3">
         <div class = "mb-3 d-flex flex-column justify-content-center align-items-center">
-            <h1>Dictionary</h1>
+            <h2>Dictionary</h2>
             <p class = "col-lg-9 text-center">The best tool for your mandarin memorization! We also offer an example sentence of every word. Click the Pinyin, or the example sentence to learn how to pronounce it correctly!</p>
             <div class = "d-flex justify-content-center">
                 <div class = "d-flex justify-content-center align-items-center legend-div">
@@ -31,7 +33,7 @@
                 <a href="{% url 'admin-create-dict' %}" class = "btn btn-warning">Add a word</a>
             </div>
         </div>
-        <table class="table table-hover table-bordered table-sm">
+        <table class="table table-hover table-sm">
             <thead>
                 <tr>
                     <th style="max-width: 10%"></th>
@@ -66,26 +68,27 @@
         </table>
     </div>
     
-        {% if is_paginated %}
-            <div class="container col-lg-8 col-xl-10 mb-5">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1" class="btn btn-warning mb-4"><i class="fas fa-chevron-left fa-sm"></i><i class="fas fa-chevron-left fa-sm"></i></a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-left fa-sm"></i></a>
+    {% if is_paginated %}
+        <div class="container col-12 col-lg-9 mb-5">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn btn-warning mb-4"><i class="fas fa-chevron-left fa-sm"></i><i class="fas fa-chevron-left fa-sm"></i></a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-left fa-sm"></i></a>
+            {% endif %}
+        
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a href="?page={{ num }}" class="btn btn-outline-secondary mb-4">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} 
+                    <a href="?page={{ num }}" class="btn btn-warning mb-4">{{ num }}</a>
                 {% endif %}
-            
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a href="?page={{ num }}" class="btn btn-outline-secondary mb-4">{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} 
-                        <a href="?page={{ num }}" class="btn btn-warning mb-4">{{ num }}</a>
-                    {% endif %}
-                {% endfor %}
-            
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-right fa-sm"></i></a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-right fa-sm"></i><i class="fas fa-chevron-right fa-sm"></i></a>
-                {% endif %}
-            </div>
-        {% endif %}
+            {% endfor %}
+        
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-right fa-sm"></i></a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-warning mb-4"><i class="fas fa-chevron-right fa-sm"></i><i class="fas fa-chevron-right fa-sm"></i></a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
 
 {% endblock %}

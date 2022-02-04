@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
-    <div class="container col-12 col-lg-8 col-xl-5 mb-5">
-
+    <div class="container col-12 col-md-8 col-lg-6 col-xl-5 mb-5 mt-4">   
+        <input type="hidden" id = "test-type" value = "assessment">
         {% if assessment_items %}
             <div class = "text-center mb-5">
                 <h2>"{{ lesson.title }}" HSK-{{ lesson.hsk }} Assessment</h2>
@@ -83,7 +83,7 @@
                 </div>
                 {% empty %}
                 <div class = "text-center">
-                    <h1 class = 'text-muted mt-5'>Sorry, this lesson does not have any assessments yet.</h1>
+                    <h2 class = 'text-muted mt-5'>Sorry, this lesson does not have any assessments yet.</h2>
                     <a href="{% url 'mandaread-lesson' view.kwargs.pk %}" class = "btn btn-warning">Go To Lesson</a>
                     <a href="{% url 'mandaread-assessments' %}" class="btn btn-warning">Assessment List</a>
                 </div>

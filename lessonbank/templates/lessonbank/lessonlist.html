@@ -1,22 +1,22 @@
 {% extends 'mandaread/base.html' %}
 
 {% block content %}
-<div class="container mb-3">
-    <h1 class = "text-center">Lessons</h1>
+<div class="container mb-3 mt-4">
+    <h2 class = "text-center">Lessons</h2>
 </div>
 
-<div class = "container mb-5">
-    <h1 class="mb-4 text-center text-muted">HSK 1</h1>
+<div class = "container col-12 col-lg-9 mb-5">
+    <h3 class="mb-4 text-center text-muted">HSK 1</h3>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
         {% if lesson_list_1 %}
             {% for lesson in lesson_list_1 %}
-                <div class = "col d-flex justify-content-center align-items-center">
-                    <div class="col-4 card text-white border-warning w-100 shadow" style="max-width: 18rem; height: 120px;">
-                        <b class = "card-header text-dark bg-warning">Lesson {{ forloop.counter }}</b>
-                        <div class="card-body d-flex">
-                            <a class = "text-dark me-2 flex-grow-1 stretched-link text-decoration-none" href = "{% url 'mandaread-lesson' lesson.pk %}">{{ lesson.title }}</a>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <div class="col-4 card text-white border-warning w-100 shadow" style="max-width: 18rem; height: auto;">
+                        <b class="card-header text-dark bg-warning">Lesson {{ forloop.counter }}</b>
+                        <div class="card-body d-flex flex-row justify-content-between">
+                            <a class="text-dark me-2 mb-3 overflow-hidden text-truncate stretched-link text-decoration-none" href="{% url 'mandaread-lesson' lesson.id %}">{{ lesson.title }}</a>
                             {% if user in lesson.read_by.all %}
-                            <div class = "text-success">
+                            <div class="text-success">
                                 <i class="fas fa-check-circle"></i>
                             </div>
                             {% endif %}
@@ -32,17 +32,16 @@
     </div>
 </div>
 
-<div class="container mb-5">
-    <h1 class="mb-4 text-center text-muted">HSK 2</h1>
+<div class="container col-12 col-lg-9 mb-5">
+    <h3 class="mb-4 text-center text-muted">HSK 2</h3>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
         {% if lesson_list_2 %}
             {% for lesson in lesson_list_2 %}
                 <div class="col d-flex justify-content-center align-items-center">
-                    <div class="col-4 card text-white border-warning w-100 shadow" style="max-width: 18rem; height: 120px;">
+                    <div class="col-4 card text-white border-warning w-100 shadow" style="max-width: 18rem; height: auto;">
                         <b class="card-header text-dark bg-warning">Lesson {{ forloop.counter }}</b>
-                        <div class="card-body d-flex">
-                            <a class="text-dark me-2 flex-grow-1 stretched-link text-decoration-none"
-                                href="{% url 'mandaread-lesson' lesson.pk %}">{{ lesson.title }}</a>
+                        <div class="card-body d-flex flex-row justify-content-between">
+                            <a class="text-dark me-2 mb-3 overflow-hidden text-truncate stretched-link text-decoration-none" href="{% url 'mandaread-assessment' lesson.id %}">{{ lesson.title }}</a>
                             {% if user in lesson.read_by.all %}
                             <div class="text-success">
                                 <i class="fas fa-check-circle"></i>

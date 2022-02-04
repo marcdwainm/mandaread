@@ -2,12 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container mb-5 col-12 col-md-6">
+    <div class="container mb-5 col-12 col-md-6 mt-4">
         {% with request.resolver_match.view_name as view_name %}
             {% if view_name == 'admin-create-dict' %}
-                <h1 class = "mb-4">Add new dictionary word</h1>
+                <h2 class = "mb-4">Add new dictionary word</h2>
             {% elif view_name == 'admin-update-dict' %}
-                <h1 class = "mb-4">Update word: "{{ object.hanzi }} -- {{ object.definition }}"</h1>
+                <h2 class = "mb-4">Update word: "{{ object.hanzi }} -- {{ object.definition }}"</h2>
             {% endif %}
         {% endwith %}
         <form method = "POST">

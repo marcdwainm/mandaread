@@ -24,12 +24,12 @@
     <!--STATIC CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'mandaread/style.css' %}">
 
-    <title>Document</title>
+    <title>Mandaread</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar fixed-top mb-5 bg-warning navbar-expand-lg navbar-light shadow">
-        <div class="container-fluid mx-3 mx-md-5">
+    <nav class="navbar d-flex justify-content-center fixed-top mb-5 bg-warning navbar-expand-lg navbar-light shadow">
+        <div class="container col-12 col-lg-9 mx-3 mx-md-5">
             <a class="navbar-brand" style="font-family: 'Quicksand', sans-serif; font-weight: 700; color: #9c7500;" href="{% url 'mandaread-home' %}">mandaread</a>
             <button class="navbar-toggler outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
                 <div class = 'd-flex gap-2'>
                     <div class = "position-relative mb-2 mb-lg-0">
                         {% if request.user.is_superuser %}
-                            <a class="btn btn-secondary btn-sm" href="{% url 'admin-home' %}">Enter Admin Mode</a>
+                            <a class="btn btn-secondary btn-sm" href="{% url 'admin-home' %}">Admin Mode</a>
                         {% endif %}
                         <button type = "button" id = "logout-btn" class="btn btn-light btn-sm">Logout</button>
                         <div class="d-none flex-column position-absolute bg-white shadow logout-dropdown" id="logout-dropdown">
@@ -92,9 +92,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
     <!--STATIC SCRIPTS-->
-    <script src="{% static 'mandaread/quiz-script.js' %}"></script>
+
     <script src="{% static 'mandaread/text-to-speech.js' %}"></script>
     <script src="{% static 'mandaread/base.js' %}"></script>
+
+    <!--QUIZ EXTRA SCRIPT-->
+    <script>
+        const checkAssessmentPerfect = () => {
+            if(percentage == 100){
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'assessment-perfected' %}"
+                })
+            }
+        }
+
+        const checkMockPerfect = () => {
+            if(percentage == 100){
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'mock-perfected' %}"
+                })
+            }
+        }
+    </script>
+
+    <script src="{% static 'mandaread/quiz-script.js' %}"></script>
 </body>
 
 </html>

@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block content %}
-    <div class="container mb-5 col-12 col-md-6">
+    <div class="container mb-5 col-12 col-md-6 mt-4">
         {% with request.resolver_match.view_name as view_name %}
             {% if view_name == 'admin-assessment-create' %}
-                <h1 class = "mb-4">Add question for: "{{ lesson_object.title }}"</h1>
+                <h2 class = "mb-4">Add question for: "{{ lesson_object.title }}"</h2>
             {% elif view_name == 'admin-assessment-update' %}
-                <h1 class = "mb-4">Update question: "{{ object.question }}"</h1>
+                <h2 class = "mb-4">Update question: "{{ object.question }}"</h2>
             {% endif %}
         {% endwith %}
         <form method="POST">

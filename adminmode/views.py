@@ -19,6 +19,7 @@ from lessonbank.models import LessonAssessment, LessonBank
 from dictionary.models import Dictionary
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
+from django.db.models import Count
 
 
 
@@ -84,6 +85,14 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['log_entries'] = LogEntry.objects.all()[:20]
         return context
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+class AdminFullUsers(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = User
+    template_name = "adminmode/admin_full_users.html"
+    context_object_name = "users"
 
     def test_func(self):
         return self.request.user.is_superuser

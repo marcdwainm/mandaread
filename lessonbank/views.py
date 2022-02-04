@@ -1,10 +1,14 @@
+from distutils.log import debug
+from importlib.metadata import requires
 from urllib import request
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from .models import LessonBank, LessonAssessment
 from dictionary.models import Dictionary
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django import forms
+from django.http import JsonResponse
 import random
 
 class LessonsListView(ListView):
@@ -36,7 +40,7 @@ class LessonListDetailView(DetailView):
         context['lesson_items'] = Dictionary.objects.filter(from_lesson=lesson_obj)
         return context
 
-class LessonAssessmentView(ListView):
+class LessonAssessmentView(ListView, forms.Form):
     model = LessonAssessment
     template_name = 'lessonbank/lesson_assessment.html'
     context_object_name = 'assessment_items'
@@ -83,3 +87,21 @@ class MockTestView(ListView):
             questions = LessonAssessment.objects.filter(Q(reading_type=True)).order_by('?')[:80]
 
         return questions
+
+
+
+# AJAX REQUESTS IF EXAM PERFECTED
+
+def assessmentPerfected(request):
+    user = request.user
+    user.profile.assessment_perfected = True
+    user.save()
+
+    return JsonResponse({}, status = 200)
+
+def mockPerfected(request):
+    user = request.user
+    user.profile.mock_perfected = True
+    user.save()
+
+    return JsonResponse({}, status = 200)

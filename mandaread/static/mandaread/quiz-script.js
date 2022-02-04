@@ -3,7 +3,7 @@ $(document).ready(function(){
     let answered_all = true
     let numOfItems = $('.card-body').length
     let wrongAnswers = []
-
+    percentage = 0
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
@@ -29,7 +29,7 @@ $(document).ready(function(){
                 answered_all = false
             }
             // Check if answer is correct. If yes, add 1 to score.
-            else if($(this).val().toLowerCase() == $(this).siblings(".hidden-answer").val()){
+            else if($(this).val().toLowerCase() == $(this).siblings(".hidden-answer").val().toLowerCase()){
                 score += 1;
             }
             // If answer not correct, add their IDs to array.
@@ -61,7 +61,7 @@ $(document).ready(function(){
             e.stopPropagation()
         }
         else if(answered_all){
-            let percentage = Math.round((score / numOfItems) * 100)
+            percentage = Math.round((score / numOfItems) * 100)
 
             //LOW PERCENTAGE: 0-33
             //MED PERCENTAGE: 34-67
@@ -101,9 +101,13 @@ $(document).ready(function(){
                 $(this).prop('disabled', true)
             })
 
-
             //Hide submit button
             $(".submit-assessment").hide()
+
+            if($("#test-type").val() == "assessment")
+                checkAssessmentPerfect()
+            else if($("#test-type").val() == "mock")
+                checkMockPerfect()
         }
     })
 

@@ -11,7 +11,6 @@ from lessonbank.models import LessonBank
 from django.urls import reverse_lazy
 from landing.forms import UserUpdateForm, ProfileUpdateForm
 
-
 @login_required
 def updateProfile(request):
     if request.method == 'POST':

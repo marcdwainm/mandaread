@@ -2,18 +2,17 @@
 
 
 {% block content %}
-<div class="container d-flex align-items-center mb-4">
-    <h2 class = "me-3">User Reports</h2>
-    <div>
-        <a href="" class = "btn btn-warning btn-sm">Full Report</a>
-    </div>
-</div>
-
-<div class="container d-flex flex-column flex-md-row justify-content-md-between gap-5">
+<div class="container col-lg-9 mb-5 d-flex flex-column flex-md-row justify-content-md-between gap-5 mt-4">
     <div class = "col-12 col-md-9">
-
+        
         <!--USERS TABLE-->
         <div class = "mb-5">
+            <div class="container d-flex align-items-center mb-4 p-0">
+                <h2 class = "me-3">User Reports</h2>
+                <div>
+                    <a href="{% url 'admin-full-users' %}" class = "btn btn-warning btn-sm">Full Report</a>
+                </div>
+            </div>
             <span>Total Users: {{ users.count }}</span>
             <table class="table table-hover table-responsive">
                 <thead>
@@ -80,7 +79,7 @@
     </div>
 
     <!--ACTIVITY LOGS-->
-    <div class = "col-md-2">
+    <div class = "col-md-3">
         <table class="table table-hover table-sm">
             <thead>
                 <tr>

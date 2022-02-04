@@ -1,7 +1,7 @@
 {% extends 'mandaread/base.html' %}
 
 {% block content %}
-<div class="container d-flex flex-column-reverse flex-lg-row mb-5">
+<div class="container d-flex flex-column-reverse flex-lg-row col-12 col-lg-9 mb-5">
     <div class="me-lg-5 col-lg-3">
         <div class="content-section">
             <h4>Shortcuts</h4>
@@ -36,7 +36,7 @@
             <div class = "mb-3 align-self-end">
                 <a href = "{% url 'mandaread-assessment' object.id %}" class="btn btn-warning">Assessment</a>
             </div>
-            <h1 class = "me-3">{{ object.title }}</h1>
+            <h2 class = "me-3">{{ object.title }}</h2>
         </div>
         <p class="text-secondary">HSK {{ object.hsk }}</p>
         <p class="mb-5">{{ object.description|linebreaksbr }}</p>
