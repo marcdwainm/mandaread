@@ -17,4 +17,21 @@ $(document).ready(function(){
         $("#logout-dropdown").removeClass("d-flex").addClass("d-none");
         hidden = true
     })
+
+    $("#dropdown-range").on('click', function(){
+        $("#date-range-picker").show()
+    })
+
+    $("#filter-range").on('click', function(){
+        rangeStart = $("#range-start").val()
+        rangeEnd = $("#range-end").val()
+        currentURL = $("#current-url").val()
+        window.location.href = currentURL + "?start=" + rangeStart + "&end=" + rangeEnd
+    })
 })
+
+// Date Picker
+const elem = document.getElementById('range');
+const dateRangePicker = new DateRangePicker(elem, {
+    format: "yyyy-mm-dd"
+}); 

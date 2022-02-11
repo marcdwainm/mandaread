@@ -105,6 +105,12 @@
                     url: "{% url 'assessment-perfected' %}"
                 })
             }
+            else{
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'assessment-took' %}"
+                })
+            }
         }
 
         const checkMockPerfect = () => {
@@ -112,6 +118,12 @@
                 $.ajax({
                     type: "GET",
                     url: "{% url 'mock-perfected' %}"
+                })
+            }
+            else{
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'mock-took' %}"
                 })
             }
         }

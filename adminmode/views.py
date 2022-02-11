@@ -4,7 +4,7 @@ from re import template
 from typing import Dict
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.admin.models import LogEntry
+from .models import UserLog, AchievementLog
 from django.views.generic import (
     TemplateView, 
     ListView, 
@@ -20,8 +20,7 @@ from dictionary.models import Dictionary
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.db.models import Count
-
-
+import datetime
 
 ######HOME#######
 
@@ -78,16 +77,37 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = User
     template_name = "adminmode/admin_reports.html"
     context_object_name = "users"
-    queryset = User.objects.all()[:10]
+    queryset = User.objects.all().order_by('-date_joined')
 
-    #Get Activity Logs
+    def get_queryset(self):
+        if self.request.method == 'GET' and ('start' in self.request.GET and 'end' in self.request.GET):
+            start = datetime.datetime.strptime(self.request.GET['start'], "%Y-%m-%d")
+            end = datetime.datetime.strptime(self.request.GET['end'], "%Y-%m-%d") + datetime.timedelta(days=1)
+            return User.objects.all().filter(date_joined__range=[start, end]).order_by('-date_joined')
+        else:
+            return User.objects.all().order_by('-date_joined')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['log_entries'] = LogEntry.objects.all()[:20]
+        filter = self.kwargs['filter']
+        
+        if self.request.method == 'GET' and ('start' in self.request.GET and 'end' in self.request.GET):
+            start = datetime.datetime.strptime(self.request.GET['start'], "%Y-%m-%d")
+            end = datetime.datetime.strptime(self.request.GET['end'], "%Y-%m-%d") + datetime.timedelta(days=1)
+            context['date_start'] = start.strftime("%b %d")
+            context['date_end'] = datetime.datetime.strptime(self.request.GET['end'], "%Y-%m-%d").strftime("%b %d")
+            context['logs'] = UserLog.objects.all().filter(date_time_logged__range=[start, end]).order_by('-date_time_logged')
+            context['achievements'] = AchievementLog.objects.all().filter(date_time_achieved__range=[start, end]).order_by('-date_time_achieved')
+        else: 
+            context['logs'] = UserLog.objects.all().order_by('-date_time_logged')
+            context['achievements'] = AchievementLog.objects.all().order_by('-date_time_achieved')
+
         return context
 
     def test_func(self):
         return self.request.user.is_superuser
+
+
 
 class AdminFullUsers(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = User

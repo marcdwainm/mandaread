@@ -25,6 +25,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'mandaread/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'adminmode/style.css' %}">
 
+    <!--DATE RANGE PICKER-->
+    <link href="{% static 'datepicker/dist/css/datepicker.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'datepicker/dist/css/datepicker-bs4.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'datepicker/dist/css/datepicker-bulma.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'datepicker/dist/css/datepicker-foundation.min.css' %}" rel="stylesheet" />
+
     <title>Mandaread</title>
 </head>
 
@@ -90,12 +96,16 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+    <!--Date Picker Javascript-->
+    <script src="{% static 'datepicker/dist/js/datepicker-full.min.js' %}"></script>
+    
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{% static 'mandaread/quiz-script.js' %}"></script>
     <script src="{% static 'mandaread/text-to-speech.js' %}"></script>
     <script src="{% static 'mandaread/base.js' %}"></script>
+
 </body>
 
 </html>

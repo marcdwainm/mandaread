@@ -8,6 +8,8 @@ urlpatterns = [
     path('mocktest/<int:hsk>', views.MockTestView.as_view(), name = "mandaread-mocktest"),
 
     #AJAX GET REQUESTS
+    path('assessment-took/', views.assessmentTook, name="assessment-took"),
+    path('mock-took/', views.mockTook, name="mock-took"),
     path('assessment-perfected/', views.assessmentPerfected, name="assessment-perfected"),
     path('mock-perfected/', views.mockPerfected, name="mock-perfected")
 ]

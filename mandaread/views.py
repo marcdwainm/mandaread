@@ -11,6 +11,10 @@ from lessonbank.models import LessonBank
 from django.urls import reverse_lazy
 from landing.forms import UserUpdateForm, ProfileUpdateForm
 
+#Imports for user logging
+from adminmode.models import UserLog
+import datetime
+
 @login_required
 def updateProfile(request):
     if request.method == 'POST':
@@ -21,6 +25,14 @@ def updateProfile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+
+            #Insert log to database
+            user_log = UserLog()
+            user_log.log_by = request.user.username
+            user_log.action = "updated his/her account"
+            user_log.date_time_logged = datetime.datetime.now()
+            user_log.save()
+
             messages.success(
                 request, f'Success. Your profile has been updated!')
             return redirect('mandaread-edit-profile')
@@ -51,6 +63,14 @@ def accountDelete(request):
     try:
         u = User.objects.get(id=request.user.id)
         u.delete()
+
+        #Insert log to database
+        user_log = UserLog()
+        user_log.log_by = request.user.username
+        user_log.action = "deleted his/her own account"
+        user_log.date_time_logged = datetime.datetime.now()
+        user_log.save()
+
         messages.warning(
             request, f'Your account has been deleted. It\'s sad to see you leave.')
     except User.DoesNotExist:
@@ -74,10 +94,20 @@ class Home(LoginRequiredMixin, TemplateView):
 
         #Getting user's percentage
         percentage = str(round((lessons_read / all_lessons) * 100))
+        
         context['lesson_percentage'] = percentage
         return context
 
 class NewPasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, PasswordChangeView):
+    def form_valid(self, form):
+        #Insert log to database
+        user_log = UserLog()
+        user_log.log_by = self.request.user.username
+        user_log.action = "changed his/her password"
+        user_log.date_time_logged = datetime.datetime.now()
+        user_log.save()
+        return super().form_valid(form)
+
     form_class = PasswordChangeForm
     success_message = "Your password was updated successfully!"
     success_url = reverse_lazy('mandaread-edit-profile')
