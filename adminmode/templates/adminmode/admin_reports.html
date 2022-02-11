@@ -198,44 +198,52 @@
         {% elif request.resolver_match.kwargs.report == 'achievements' %}
             <!--ACHIEVEMENTS-->
 
-            {% if request.resolver_match.kwargs.filter == 'byday' %}
-                {% regroup achievements by date_time_achieved|date:"M d, Y" as obj %}  
-            {% elif request.resolver_match.kwargs.filter == 'byweek' %}
-                {% regroup achievements by date_time_achieved|date:"W (Y)" as obj %}  
-            {% elif request.resolver_match.kwargs.filter == 'bymonth' %}
-                {% regroup achievements by date_time_achieved|date:"M Y" as obj %}  
-            {% elif request.resolver_match.kwargs.filter == 'byyear' %}
-                {% regroup achievements by date_time_achieved|date:"Y" as obj %}
-            {% elif request.resolver_match.kwargs.filter == 'byrange' %}
-                {% regroup achievements by date_time_achieved|date:"M d, Y" as obj %}
-            {% endif %} 
+            <!--Group achievements by user-->
+            {% regroup achievements by achieved_by as user %}
+            
 
-            {% for group in obj %}
-                {% if request.resolver_match.kwargs.filter == 'byweek' %}
-                    <span class = "h4">Week {{ group.grouper }}</span>
-                {% else %}
-                    <span class = "h4">{{ group.grouper }}</span>
-                {% endif %}
-                <div></div>
-                <table class="table table-hover mb-5">
-                    <thead>
-                        <tr class = "fw-normal">
-                            <th>Achieved by</th>
-                            <th>Achievement</th>
-                            <th>Date/Time achieved</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <br/>
-                        {% for object in group.list %}
-                            <tr>
-                                <td class="text-break fw-bold">{{ object.achieved_by }}</td>
-                                <td class="text-break">{{ object.achievement }}</td>
-                                <td class="text-break">{{ object.date_time_achieved  }}</td>
+            {% for username in user %}
+                <div>
+                    <h2>User: {{ username.grouper }}</h2>
+                </div>
+
+                
+                {% if request.resolver_match.kwargs.filter == 'byday' %}
+                    {% regroup username.list by date_time_achieved|date:"M d, Y" as achievement_grouped %}  
+                {% elif request.resolver_match.kwargs.filter == 'byweek' %}
+                    {% regroup username.list by date_time_achieved|date:"W (Y)" as achievement_grouped %}  
+                {% elif request.resolver_match.kwargs.filter == 'bymonth' %}
+                    {% regroup username.list by date_time_achieved|date:"M Y" as achievement_grouped %}  
+                {% elif request.resolver_match.kwargs.filter == 'byyear' %}
+                    {% regroup username.list by date_time_achieved|date:"Y" as achievement_grouped %}
+                {% elif request.resolver_match.kwargs.filter == 'byrange' %}
+                    {% regroup username.list by date_time_achieved|date:"M d, Y" as achievement_grouped %}
+                {% endif %} 
+                
+                {% for user_achievements in achievement_grouped %}
+                    {% if request.resolver_match.kwargs.filter == 'byweek' %}
+                        <h5>Week {{ user_achievements.grouper }}</h5>
+                    {% else %}
+                        <h5>{{ user_achievements.grouper }}</h5>
+                    {% endif %}
+                    <table class="table table-hover mb-4">
+                        <thead>
+                            <tr class = "fw-normal">
+                                <th width="50%">Achievement</th>
+                                <th width="50%">Date/Time achieved</th>
                             </tr>
+                        </thead>
+                    
+                    <tbody>
+                        {% for ach in user_achievements.list %}
+                            <tr>
+                                <td>{{ ach.achievement }}</td>
+                                <td>{{ ach.date_time_achieved }}</td>
+                            </tr>    
                         {% endfor %}
                     </tbody>
                 </table>
+                {% endfor %}
             {% empty %}
                 <h3 class = "text-muted">Nothing to see here</h3>
             {% endfor %}

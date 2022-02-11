@@ -97,10 +97,10 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
             context['date_start'] = start.strftime("%b %d")
             context['date_end'] = datetime.datetime.strptime(self.request.GET['end'], "%Y-%m-%d").strftime("%b %d")
             context['logs'] = UserLog.objects.all().filter(date_time_logged__range=[start, end]).order_by('-date_time_logged')
-            context['achievements'] = AchievementLog.objects.all().filter(date_time_achieved__range=[start, end]).order_by('-date_time_achieved')
+            context['achievements'] = AchievementLog.objects.all().filter(date_time_achieved__range=[start, end]).order_by('achieved_by')
         else: 
             context['logs'] = UserLog.objects.all().order_by('-date_time_logged')
-            context['achievements'] = AchievementLog.objects.all().order_by('-date_time_achieved')
+            context['achievements'] = AchievementLog.objects.all().order_by('achieved_by')
 
         return context
 
