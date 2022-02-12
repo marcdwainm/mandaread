@@ -1,1 +1,1 @@
-web: gunicorn mandarin.wsgi:application --log-file -
+web: gunicorn mandarin.wsgi
