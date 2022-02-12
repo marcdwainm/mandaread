@@ -44,7 +44,7 @@ class AdminEditUser(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
     template_name = "adminmode/admin_edit_users.html"
     context_object_name = 'user'
-    fields = ['is_staff', 'is_superuser', 'last_login']
+    fields = ['is_staff', 'is_superuser', 'user_permissions', 'last_login']
 
     def get_success_url(self):
         pk = self.kwargs['pk']
@@ -103,16 +103,6 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
             context['achievements'] = AchievementLog.objects.all().order_by('achieved_by')
 
         return context
-
-    def test_func(self):
-        return self.request.user.is_superuser
-
-
-
-class AdminFullUsers(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = User
-    template_name = "adminmode/admin_full_users.html"
-    context_object_name = "users"
 
     def test_func(self):
         return self.request.user.is_superuser

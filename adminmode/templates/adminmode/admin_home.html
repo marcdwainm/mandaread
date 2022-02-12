@@ -4,13 +4,13 @@
 <main class="container">
     <div class="d-flex justify-content-between flex-column p-4 rounded">
         <div class="d-flex">
-            <div class="me-4 d-flex flex-column align-items-center justify-content-center col-12">
+            <div class="me-4 d-flex flex-column align-items-center justify-content-center col-12" id = "profile-pic">
                 <img class="rounded-circle account-img border border-secondary mb-3 shadow" src="{{ user.profile.image.url }}">
                 <h2>{{ user.username }}</h2>
                 <h5 class = "mb-4">(Admin Mode)</h5>
                 <div>
-                    <a href = "{% url 'admin-users' %}" class = "btn btn-secondary btn-sm">Manage Users</a>
-                    <a href = "{% url 'admin-reports' 'users' 'byday'  %}" class = "btn btn-secondary btn-sm">Reports</a>
+                    <a href = "{% url 'admin-users' %}" class = "btn bg-secondary bg-opacity-25 shadow-sm btn-sm">Manage Users</a>
+                    <a href = "{% url 'admin-reports' 'users' 'byday'  %}" class = "btn bg-secondary bg-opacity-25 shadow-sm btn-sm">Reports</a>
                 </div>
             </div>
         </div>

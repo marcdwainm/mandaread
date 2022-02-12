@@ -108,7 +108,7 @@ class LessonAssessmentView(ListView, forms.Form):
         hsk = current_lesson.hsk
 
         if hsk == 1:
-            return LessonAssessment.objects.filter(~Q(appearances_in_tests__hsk=2) & Q(appearances_in_tests=current_lesson))[:10]
+            return LessonAssessment.objects.filter(~Q(appearances_in_tests__hsk=2) & Q(appearances_in_tests=current_lesson)).order_by('?')[:10]
         elif hsk == 2:
             # Will get questions of the lesson, and its corresponding lesson in HSK1 (QUERIED USING TITLE)
             queryset_to_list = list(LessonAssessment.objects.filter(Q(appearances_in_tests__title__contains=current_lesson.title)).distinct()[:10])
@@ -132,9 +132,9 @@ class MockTestView(ListView):
         hsk = self.kwargs['hsk'];
 
         if hsk == 1:
-            questions = LessonAssessment.objects.filter(~Q(appearances_in_tests__hsk=2) & Q(reading_type=True)).order_by('?')[:80]
+            questions = LessonAssessment.objects.filter(~Q(appearances_in_tests__hsk=2)).order_by('?')[:80]
         elif hsk == 2:
-            questions = LessonAssessment.objects.filter(Q(reading_type=True)).order_by('?')[:80]
+            questions = LessonAssessment.objects.all().order_by('?')[:80]
 
         return questions
 

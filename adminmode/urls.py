@@ -10,7 +10,6 @@ urlpatterns = [
 
     #Reports
     path('reports/<str:report>/<str:filter>/', views.AdminReports.as_view(), name='admin-reports'),
-    path('reports/users/full', views.AdminFullUsers.as_view(), name='admin-full-users'),
 
     # Lessons
     path('lessons/', views.AdminLessons.as_view(), name='admin-lessons'),

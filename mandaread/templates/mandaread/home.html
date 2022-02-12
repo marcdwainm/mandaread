@@ -5,7 +5,7 @@
 <main class="container col-12 col-lg-8 mb-5">
     <div class="d-flex justify-content-between flex-column p-4 mt-3 rounded">
         <div class="d-flex flex-column flex-md-row mb-3">
-            <div class="me-md-4 mb-4 d-flex flex-column align-items-center justify-content-md-center">
+            <div class="me-md-4 mb-4 d-flex flex-column align-items-center justify-content-md-center" id = 'profile-pic'>
                 <img class="rounded-circle account-img border border-secondary mb-3 shadow" src="{{ user.profile.image.url }}">
                 <a href="{% url 'mandaread-edit-profile' %}" class = "btn bg-secondary bg-opacity-25 btn-sm">Edit Profile</a>
             </div>

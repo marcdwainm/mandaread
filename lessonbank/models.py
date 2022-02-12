@@ -37,8 +37,7 @@ class LessonAssessment(models.Model):
 
     # title = models.ForeignKey(LessonBank, default=None, on_delete=models.CASCADE)
     question_type = models.CharField(max_length=100, default='Multiple Choice', choices=QUESTION_TYPE)
-    reading_type = models.BooleanField(default=False)
-    question = models.TextField()
+    question = models.CharField(max_length=500, null=False, blank=False)
     choices = models.TextField(null=True, blank=True)
     answer = models.CharField(max_length=255)
     appearances_in_tests = models.ManyToManyField(LessonBank)

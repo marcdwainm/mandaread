@@ -5,17 +5,17 @@
 {% block content %}
 
 <div class="mt-4">
-    <div class="container col-lg-8 col-xl-10 mb-3">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
     <audio src="" id = "speech" hidden></audio>
     <div class="container col-12 col-lg-9 mb-3">
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div class = "mb-3 d-flex flex-column justify-content-center align-items-center">
             <h2>Dictionary</h2>
             <p class = "col-lg-9 text-center">The best tool for your mandarin memorization! We also offer an example sentence of every word. Click the Pinyin, or the example sentence to learn how to pronounce it correctly!</p>
@@ -36,11 +36,11 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th style="max-width: 10%"></th>
-                    <th>Hanzi</th>
-                    <th>Pinyin</th>
-                    <th>Type of Speech</th>
-                    <th>Definition</th>
+                    <th style="width: 10%"></th>
+                    <th style="width: 10%;">Hanzi</th>
+                    <th style="width: 10%;">Pinyin</th>
+                    <th style="width: 10%;">Type of Speech</th>
+                    <th style="width: 20%;">Definition</th>
                     <th style="width: 20%">Example</th>
                     <th style="width: 20%">Translation</th>
                 </tr>

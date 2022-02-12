@@ -10,6 +10,10 @@ h1{
   font-weight: 600;
 }
 
+#profile-pic img{
+  object-fit: cover;
+}
+
 .logout-dropdown{
   width: 130px;
   bottom: -133px;
