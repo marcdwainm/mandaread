@@ -1,1 +1,1 @@
-web: gunicorn mandaread.wsgi
+web: gunicorn mandarin.wsgi
