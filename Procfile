@@ -1,1 +1,1 @@
-web: gunicorn mandaread.wsgi --log-file -
+web: gunicorn mandaread.wsgi
