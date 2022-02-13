@@ -6,7 +6,7 @@ from django.urls import path, include
 
 urlpatterns = [
     #Original admin site
-    path('admin-original/', admin.site.urls),
+    path('admin-overridden/', admin.site.urls),
 
     #Custom admin site
     path('admin/', include('adminmode.urls')),
