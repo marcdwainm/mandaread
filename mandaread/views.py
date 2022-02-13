@@ -15,6 +15,8 @@ from landing.forms import UserUpdateForm, ProfileUpdateForm
 from adminmode.models import UserLog
 import datetime
 
+#################### Profile Management Views ####################
+
 @login_required
 def updateProfile(request):
     if request.method == 'POST':
@@ -79,7 +81,7 @@ def accountDelete(request):
     return redirect('landing-login')
 
 
-######## CLASS BASED VIEWS ########
+#################### Class Based Views ####################
 
 class Home(LoginRequiredMixin, TemplateView):
     template_name = 'mandaread/home.html'

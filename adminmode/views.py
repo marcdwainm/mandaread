@@ -1,8 +1,3 @@
-from distutils.log import Log
-from multiprocessing import get_context
-from re import template
-from typing import Dict
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import UserLog, AchievementLog
 from django.views.generic import (
@@ -19,10 +14,10 @@ from lessonbank.models import LessonAssessment, LessonBank
 from dictionary.models import Dictionary
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
-from django.db.models import Count
 import datetime
 
-######HOME#######
+
+#################### Admin Home ####################
 
 class AdminHome(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = "adminmode/admin_home.html"
@@ -39,6 +34,8 @@ class AdminManageUsers(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
         return self.request.user.is_superuser
 
+
+#################### Admin User Management ####################
 
 class AdminEditUser(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
@@ -71,7 +68,7 @@ class AdminDeleteUser(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user.is_superuser
 
 
-######REPORT GENERATION#######
+#################### Report Generation ####################
 
 class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = User
@@ -108,7 +105,7 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
 
 
-######LESSONS#######
+#################### Admin Lesson Management ####################
 
 class AdminLessons(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = LessonBank
@@ -181,7 +178,7 @@ class AdminDeleteLesson(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
 
 
 
-######DICTIONARY#######
+#################### Admin Dictionary Management ####################
 
 class AdminDictionary(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, ListView):
     model = Dictionary
@@ -244,7 +241,8 @@ class AdminDeleteDictionary(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
 
 
 
-######ASSESSMENTS#######
+#################### Admin Assessment Management ####################
+
 class AdminAssessments(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, ListView):
     model = LessonBank
     template_name = "adminmode/admin_assessments.html"

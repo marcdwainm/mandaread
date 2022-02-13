@@ -4,9 +4,10 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 import datetime
 
-# Imports for user logging
+#################### Imports for User Logging ####################
 from adminmode.models import UserLog
 
+#################### Register View ####################
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)

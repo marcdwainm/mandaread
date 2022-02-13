@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from django.views.generic import ListView
 from lessonbank.models import LessonBank
 
+#################### Assessments List View ####################
 class AssessmentsListView(ListView):
     template_name = "assessments/assessment_list.html"
     model = LessonBank

@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Dictionary
 
-#Imports for user logging
+#################### Imports for User Logging ####################
 from adminmode.models import UserLog
 import datetime
 
-
+#################### Dictionary View ####################
 class DictionaryList(ListView):
     model = Dictionary
     template_name = "dictionary/dictionary.html"

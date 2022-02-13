@@ -18,7 +18,6 @@ class Dictionary(models.Model):
     )
 
     from_lesson = models.ForeignKey(LessonBank, null=True, blank=True, on_delete=models.CASCADE)
-    # hsk = models.CharField(max_length=10, default='HSK-1', choices=HSK_LEVEL)
     hanzi = models.CharField(max_length=50)
     pinyin = models.CharField(max_length=50)
     definition = models.CharField(max_length=255)

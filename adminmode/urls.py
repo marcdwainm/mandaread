@@ -2,13 +2,13 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    #Home
+    # Home
     path('', views.AdminHome.as_view(), name='admin-home'),
     path('users/', views.AdminManageUsers.as_view(), name='admin-users'),
     path('users/edit/<int:pk>/', views.AdminEditUser.as_view(), name='admin-edit-user'),
     path('users/delete/<int:pk>/', views.AdminDeleteUser.as_view(), name='admin-delete-user'),
 
-    #Reports
+    # Reports
     path('reports/<str:report>/<str:filter>/', views.AdminReports.as_view(), name='admin-reports'),
 
     # Lessons

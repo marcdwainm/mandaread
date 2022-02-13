@@ -11,10 +11,12 @@ from django import forms
 from django.http import JsonResponse
 import random
 
-#Imports for user logging
+#################### Imports for User Logging ####################
 from adminmode.models import UserLog, AchievementLog
 import datetime
 
+
+#################### Lesson Views ####################
 class LessonsListView(ListView):
     model = LessonBank
     template_name = 'lessonbank/lessonlist.html'
@@ -90,6 +92,7 @@ class LessonListDetailView(DetailView):
 
         return context
 
+#################### Assessment ####################
 class LessonAssessmentView(ListView, forms.Form):
     model = LessonAssessment
     template_name = 'lessonbank/lesson_assessment.html'
@@ -117,7 +120,7 @@ class LessonAssessmentView(ListView, forms.Form):
 
 
 
-# Mocktest
+#################### Mocktest ####################
 class MockTestView(ListView):
     model = LessonAssessment
     template_name = 'lessonbank/mocktest.html'
@@ -140,8 +143,7 @@ class MockTestView(ListView):
 
 
 
-# Ajax Requests if exam submitted
-
+#################### AJAX requests if exam submitted ####################
 def assessmentTook(request):
     #Insert log to database
     user_log = UserLog()

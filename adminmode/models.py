@@ -1,18 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-# User "" registered an account
-# User "" logged in
-# User "" updated his/her profile
-# User "" deleted his/her account
-# User "" read lesson 1
-# User "" opened the dictionary
-# User "" took an assessment
-# User "" took the mock test
-
-# User "" has achieved The Golden Konghou
-
 class UserLog(models.Model):
     log_by = models.CharField(max_length=150)
     action = models.CharField(max_length=150)
