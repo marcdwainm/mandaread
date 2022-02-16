@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.admin.models import LogEntry
 from .models import UserLog, AchievementLog
 from django.views.generic import (
     TemplateView, 
@@ -94,9 +95,11 @@ class AdminReports(LoginRequiredMixin, UserPassesTestMixin, ListView):
             context['date_start'] = start.strftime("%b %d")
             context['date_end'] = datetime.datetime.strptime(self.request.GET['end'], "%Y-%m-%d").strftime("%b %d")
             context['logs'] = UserLog.objects.all().filter(date_time_logged__range=[start, end]).order_by('-date_time_logged')
+            context['admin_logs'] = LogEntry.objects.all().filter(action_time__range=[start, end]).order_by('-action_time')
             context['achievements'] = AchievementLog.objects.all().filter(date_time_achieved__range=[start, end]).order_by('achieved_by')
         else: 
             context['logs'] = UserLog.objects.all().order_by('-date_time_logged')
+            context['admin_logs'] = LogEntry.objects.all().order_by('-action_time')
             context['achievements'] = AchievementLog.objects.all().order_by('achieved_by')
 
         return context
@@ -217,9 +220,9 @@ class AdminUpdateDictionary(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
         
         #Go to paginated page
         if self.request.GET.get('next'):
-            return f"/adminmode/dictionary?page={self.request.GET.get('next', 1)}"
+            return f"/admin/dictionary?page={self.request.GET.get('next', 1)}"
         else:
-            return "adminmode/dictionary"
+            return "admin/dictionary"
 
     def test_func(self):
         return self.request.user.is_superuser
@@ -321,9 +324,9 @@ class AdminUpdateItemView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessag
 
         #Go to paginated page
         if self.request.GET.get('next'):
-            return f"/adminmode/assessments/{lesson}/?page={self.request.GET.get('next', 1)}"
+            return f"/admin/assessments/{lesson}/?page={self.request.GET.get('next', 1)}"
         else:
-            return f"/adminmode/assessments/{lesson}/"
+            return f"/admin/assessments/{lesson}/"
 
     def test_func(self):
         return self.request.user.is_superuser
@@ -338,7 +341,7 @@ class AdminDeleteItemView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessag
         pk = self.kwargs['pk']
         lesson = LessonAssessment.objects.get(pk=pk).appearances_in_tests.all()[0].pk
         messages.add_message(self.request, messages.SUCCESS, f"Question was deleted successfully!")
-        return f'/adminmode/assessments/{lesson}'
+        return f'/admin/assessments/{lesson}'
     
     def test_func(self):
         return self.request.user.is_superuser

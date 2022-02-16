@@ -1,0 +1,144 @@
+Goodmorning sir, so eto po yung system namin which is called "MANDAREAD"
+a mandarin learning website
+
+Eto po yung login page which is yung unang makikita ng users
+
+tapos eto po yung sa baba, konting details lang po about sa app then yung footer 
+
+So bago po magamit to kailangan muna magregister ng users, click lang po yung register dito sa taas
+
+then hihingiin po satin yung username, email, at password
+
+*Enter "superuser" and "superuser@gmail.com"*
+
+bale eto po taken na yung username at email kaya baguhin nalang po natin
+
+pag naregister na po, pwede na maglogin.
+
+bale yung ilologin ko po ngayon is yung admin
+
+So eto po yung unang makikita ng user
+
+sa taas po is yung profile and yung mga progress at achievements ng user
+
+then sa baba po is yung lessons, dictionary, at exams
+
+so una po, edit muna yung profile.
+
+bale po yung users pwede mag palit ng username, and profile picture. so try po natin palitan.
+
+pag tapos na po, click lang po yung "save changes" sa baba
+
+pwede rin po palitan yung password, click lang po tong sa baba
+
+then enter lang yung old password, new password, and yung confirmation ng new password.
+
+*enter "superuser", then "samplepassword"*
+
+then save changes lang po then ayun napalitan na po yung password
+
+lastly, pwede din po magdelete ng account. Click lang po tong sa baba then may confirmation na lalabas
+if gusto ng user idelete yung account. So cancel lang po natin sa ngayon.
+
+Next po is yung sa lessons,
+
+punta lang pong homepage, or pwede na din po dito sa navbar sa taas.
+
+So eto po yung list ng lessons. Bale yung sakin po may mga check na kasi nabasa ko na po yung lessons.
+
+so click lang po kayo ng gusto niyong basahin then lalabas yung details ng lesson.
+
+so nandito po yung description then yung mga words na ituturo. tapos nasa gilid po yung shortcuts
+papuntang ibang lessons.
+
+if gusto niyo din po marinig yung pronounciation ng words, click niyo lang po yung hanzi then magpaplay
+yung sound. Di ko lang po alam if rinig dito sa ms teams.
+
+Then if gusto niyo po itake yung assessment ng lesson na to, click lang po yung "assessment" button sa taas
+
+bale dito po bibigyan kayo ng 10 questions 
+which is nararandomize everytime itetake yung assessment
+
+Sa taas po is yung instructions lang. 
+
+then try po natin sagutan.
+
+*sagutan ng A lahat*
+
+after po isubmit, magsscroll siya sa taas then papakita yung score.
+then pwede niyo po ireview kung saan kayo nagkamali. papakita lang po dito yung tamang sagot.
+
+lalabas din po yung buttons, if gusto ng user bumalik sa lesson or assessment list,
+meron din pong "Retake" button if gusto ulitin ng user yung assessment.
+
+Then balik po sa homepage
+
+yung assessments po, bale papakita lang po dito yung list nung assessments of every lesson.
+
+Yung mock test po, bale pili lang po kayo dito sa baba if HSK 1 or 2
+
+same mechanics lang din po to sa assessment, ang pinagkaiba lang po is 80 questions yung ibibigay,
+and yung questions po is pinaghalo halong questions ng ibat ibang lesson
+
+Lastly is yung dictionary po, dinidisplay lang po dito yung list of words ng bawat lesson. 
+
+nandito parin po yung feature na nagpeplay ng audio. pero ngayon po is pwede niyo rin iplay yung sentence.
+
+bale yung mga kulay gray po, ibig sabihin lang po niyan is galing yung word sa hsk 2.
+
+then sa baba po is yung pagination.
+
+Lastly po is yung sa admin,
+
+if yung user po is merong permissions as a superuser, meron po dito sa navbar if gusto ng user magpalit ng
+mode to admin mode.
+
+If admin po, pwede niya imanage lahat ng lessons, assessments and dictionary.
+
+For example po sa lessons, pwede siya magedit or delete ng lesson. Bale sa edit po, pipili lang siya
+if anong hsk yung lesson, yung title, then yung description po. Then pwede niya po itoggle dito if gusto
+niya ipakita yung table ng words para sa lesson na to.
+
+*Save changes*
+
+Pag dinelete po is may lalabas lang na confirmation.
+
+Pwede din po siya magcreate ng bagong lesson, click lang po tong button sa taas
+
+then enter lang po if saang HSK siya kabilang, yung title, then yung descirption po.
+
+*fill up*
+
+So pag sinubmit po, makikita niyo po nadagdag na siya dito as a lesson.
+
+Then pwede din po imanage yung questions ng bawat lesson. 
+
+Punta lang po kayo dito sa lesson, tas click lang po tong "Manage assessments", or pwede rin po pumuntang
+homepage, then click lang po yung "manage" dito sa assessment section.
+
+bale dito po is pwede siya mag add questions, 
+
+pwede niya din po iedit or delete yung questions.
+
+Then sa dictionary po, is ganun din po. pwede siya mag add ng words, then yung mga existing words is pwede
+niya iedit or delete.
+
+lastly po is yung "manage users", and yung "reports"
+
+Sa manage users, po is papakita lang yung list ng users, then sa edit po is pwede niyo palitan yung privileges nila.
+
+Then pwede din po iterminate ng admin yung accounts nila.
+
+Lastly po is yung sa reports. bale sa taas po pwede kayo pumili ng kung anong gusto niyong report.
+Meron po dito is "users", "activity logs ng users and admin", tsaka po "achievements"
+
+Then pag nakapili na po ng report, is pili lang kayo ng filter. By default, by day po yung ididisplay niya.
+
+So kunwari po by month, magogroup lahat ng logs, by month. 
+
+then sa range po, kunwari feb 10-20, lalabas lang po yung logs sa range na yun.
+
+ayun lang sir thankyou po.
+
+
+

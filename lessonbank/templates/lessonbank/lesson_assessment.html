@@ -75,7 +75,7 @@
                             <div class="valid-feedback">Field answered. Fill up other unanswered fields.</div>
                             <div class="invalid-feedback">Please answer this field.</div>
                             <!--Correct Answer Message-->
-                            <span class = "text-danger correct-answer mt-2">Wrong! Correct Answer: {{ item.answer|upper }}</span>
+                            <span class = "text-danger correct-answer mt-2 fw-bold">Correct Answer: {{ item.answer|upper }}</span>
                             <!--Correct Answer is hidden here-->
                             <input type = "hidden" class = "hidden-answer" value = "{{ item.answer }}">
                         </div>
